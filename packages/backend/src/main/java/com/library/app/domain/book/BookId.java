@@ -1,4 +1,4 @@
-package main.java.com.library.app.domain.book;
+package com.library.app.domain.book;
 
 import java.util.UUID;
 
