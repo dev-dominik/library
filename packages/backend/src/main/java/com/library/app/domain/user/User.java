@@ -11,10 +11,6 @@ public class User {
     private String firstName;
     private String lastName;
 
-    public User(UserId id) {
-        this.id = id;
-    }
-
     public User(UserId id, Account account, String firstName, String lastName) {
         this.id = Objects.requireNonNull(id);
         this.account = account;

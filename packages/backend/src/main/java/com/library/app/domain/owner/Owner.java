@@ -6,10 +6,6 @@ import com.library.app.domain.user.UserId;
 
 public class Owner extends User {
 
-    public Owner(UserId id) {
-        super(id);
-    }
-
     public Owner(UserId id, Account account, String firstName, String lastName) {
         super(id, account, firstName, lastName);
     }

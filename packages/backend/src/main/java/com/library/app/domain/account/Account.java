@@ -14,8 +14,11 @@ public class Account {
     private int borrowedBooksCount;
     private List<Book> borrowedBooks;
 
-    public Account(AccountId id) {
+    public Account(AccountId id, String email, String password) {
         this.id = Objects.requireNonNull(id);
+        this.email = email;
+        this.password = password;
+
         this.borrowedBooks = new ArrayList<>();
         this.borrowedBooksCount = 0;
     }

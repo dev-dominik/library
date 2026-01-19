@@ -122,19 +122,8 @@ public class Book {
         }
 
         public Book build() {
-            validate();
             return new Book(this);
         }
 
-        private void validate() {
-            if (title == null || title.isBlank())
-                throw new IllegalStateException("Title is required");
-            if (author == null || author.isBlank())
-                throw new IllegalStateException("Author is required");
-            if (yearPublished <= 0)
-                throw new IllegalStateException("Year published must be positive");
-            if (category == null || category.isBlank())
-                throw new IllegalStateException("Category is required");
-        }
     }
 }
