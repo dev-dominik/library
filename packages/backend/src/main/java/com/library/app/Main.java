@@ -12,7 +12,8 @@ import com.library.app.service.AccountService;
 import com.library.app.service.BookService;
 import com.library.app.web.AccountController;
 import com.library.app.web.BookController;
-import com.library.tests.ManualTests;
+import com.library.tests.AccountTests;
+import com.library.tests.BooksTests;
 
 public class Main {
 
@@ -20,6 +21,10 @@ public class Main {
     private final BookController bookController;
     private final AccountService accountService;
     private final AccountController accountController;
+
+    // tests
+    private AccountTests accountTests;
+    private BooksTests booksTests;
 
     private User user;
     private Owner owner;
@@ -29,6 +34,9 @@ public class Main {
         this.bookController = new BookController(this);
         this.accountService = new AccountService(this);
         this.accountController = new AccountController(this);
+
+        this.accountTests = new AccountTests(this);
+        this.booksTests = new BooksTests(this);
     }
 
     public User getUser() {
@@ -39,18 +47,24 @@ public class Main {
         return owner;
     }
 
+    public BookController getBookController() {
+        return bookController;
+    }
+
     public BookService getBookService() {
         return bookService;
     }
 
     public AccountService getAccountService() {
-        return this.accountService;
+        return accountService;
+    }
+
+    public AccountController getAccountController() {
+        return accountController;
     }
 
     public static void main(String[] args) {
         new Main().init();
-
-        // ManualTests.runAllFixed();
     }
 
     public void init() {
@@ -62,20 +76,8 @@ public class Main {
             for (Book book : cobenBooks)
                 bookController.addBookToLibraryCatalog(owner, book);
 
-            // // search books
-            // bookController.showLibraryCatalog();
-
-            // // remove book
-            // bookController.removeBookFromLibraryCatalog(owner,
-            // cobenBooks.get(0).getId());
-
-            // borrow book
-            bookController.borrowBook(user, cobenBooks.get(1));
-
-            accountController.checkAccount(user);
-            // // return book
-            bookController.markBookAsReturned(user, cobenBooks.get(1));
-            accountController.checkAccount(user);
+            accountTests.runTests(user);
+            booksTests.runTest();
         } catch (RuntimeException e) {
             System.err.println("Application error: " + e.getMessage());
         }
@@ -121,6 +123,8 @@ public class Main {
                         .author("Harlan Coben")
                         .yearPublished(2020)
                         .category("Thriller")
+                        .build(),
+                Book.builder().title("Run Away").author("Harlan Coben").yearPublished(2019).category("Thriller")
                         .build());
     }
 }

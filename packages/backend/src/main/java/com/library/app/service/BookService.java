@@ -42,6 +42,10 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
+    public List<Book> getBooks() {
+        return this.lc.getBooks();
+    }
+
     public void addBook(Book book) {
         lc.addBook(book);
     }
