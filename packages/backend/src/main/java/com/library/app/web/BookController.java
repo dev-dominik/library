@@ -66,7 +66,7 @@ public class BookController {
         if (userAccount == null)
             throw new NullPointerException("User account cannot be null!");
 
-        if (userAccount.getBorrowedBooks().size() >= 5)
+        if (main.getAccountService().isBorrowedBooksLimit(userAccount))
             throw new IllegalStateException("You have already reached the maximum number of borrowed books!");
 
         if (userAccount.getBorrowedBooks().contains(book))
@@ -95,8 +95,7 @@ public class BookController {
 
         BookService bookService = Objects.requireNonNull(main.getBookService(), "Book service is null!");
 
-        userAccount.getBorrowedBooks().remove(book);
-
+        userAccount.removeBorrowedBook(book);
         bookService.markAsReturned(book);
     }
 
