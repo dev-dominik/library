@@ -1,27 +1,7 @@
-# Library — running the project
-
-This repository contains a small Java backend under `packages/backend` and a Docker Compose file that starts a PostgreSQL database and pgAdmin.
-
 ## Prerequisites
 
 - Java JDK (tested with JDK 17+; the build will also work on newer JDKs)
 - Apache Maven
-- Docker & Docker Compose (to run the bundled PostgreSQL service)
-
-## Start the database (Docker Compose)
-
-From the repository root run:
-
-```bash
-docker-compose up -d
-```
-
-This starts two services declared in `docker-compose.yml`:
-
-- `postgres` — PostgreSQL 16 (database: `library`, user: `library_user`, password: `library_pass`)
-- `pgadmin` — pgAdmin available on port `5050`
-
-If you don't want to use Docker, create a PostgreSQL database with the same credentials and point the application to it.
 
 ## Build the backend with Maven
 
@@ -57,4 +37,3 @@ Notes:
 ## Troubleshooting
 
 - If `mvn` is not found, install Apache Maven (Homebrew on macOS: `brew install maven`).
-- If Docker is not running, start Docker Desktop or the Docker daemon before `docker-compose up`.
